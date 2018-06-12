@@ -59,7 +59,7 @@ class SoftDeletingUnixScope implements Scope
      */
     protected function getDeletedAtColumn(Builder $builder)
     {
-        if (count($builder->getQuery()->joins) > 0) {
+        if ($builder->getQuery()->joins !== null && count($builder->getQuery()->joins) > 0) {
             return $builder->getModel()->getQualifiedDeletedAtColumn();
         }
         return $builder->getModel()->getDeletedAtColumn();
